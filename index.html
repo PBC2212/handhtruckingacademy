@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>H&H Trucking Academy | Professional CDL Training</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --dark: #111315;
+      --card: #14181c;
+      --red: #C0392B;
+      --red-light: #e04030;
+      --yellow: #F5C518;
+      --blue: #1a4fa0;
+      --white: #f4efe6;
+      --gray: #8a8f96;
+      --border: #222830;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: var(--red);
+      padding: 8px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .topbar a { color: var(--white); text-decoration: none; }
+    .topbar-items { display: flex; gap: 30px; align-items: center; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(8,8,8,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--red);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo img {
+      height: 62px; width: auto;
+      filter: drop-shadow(0 0 8px rgba(192,57,43,0.4));
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a {
+      color: var(--white); text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 8px 16px; transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--red); color: #fff; }
+    .nav-cta { background: var(--red) !important; border: 2px solid var(--red) !important; }
+    .nav-cta:hover { background: var(--red-light) !important; }
+
+    /* HERO */
+    .hero {
+      position: relative; min-height: 92vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(105deg, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.75) 55%, rgba(8,8,8,0.3) 100%),
+        url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=80') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);
+    }
+    .hero-accent {
+      position: absolute; right: -60px; top: 0; bottom: 0; width: 520px;
+      background: linear-gradient(135deg, transparent 0%, rgba(192,57,43,0.1) 100%);
+      border-left: 3px solid rgba(192,57,43,0.25);
+      transform: skewX(-6deg);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 60px 40px 60px 80px; max-width: 780px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; padding: 7px 22px 7px 18px;
+      margin-bottom: 28px;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(58px, 7vw, 100px);
+      line-height: 0.92; letter-spacing: 2px; color: var(--white); margin-bottom: 10px;
+    }
+    .hero h1 span { color: var(--red); display: block; }
+    .hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--yellow); margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: 18px; color: rgba(244,239,230,0.8);
+      max-width: 560px; line-height: 1.65; margin-bottom: 40px;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 16px 40px;
+      text-decoration: none; border: 2px solid var(--red);
+      transition: all 0.25s; display: inline-block;
+      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+    }
+    .btn-primary:hover { background: var(--red-light); transform: translateX(4px); }
+    .btn-secondary {
+      background: transparent; color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 16px 40px;
+      text-decoration: none; border: 2px solid rgba(244,239,230,0.35);
+      transition: all 0.25s; display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.07); }
+    .hero-stats {
+      position: absolute; right: 80px; bottom: 60px;
+      display: flex; gap: 40px; z-index: 2;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--yellow); line-height: 1; }
+    .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+
+    /* MARQUEE */
+    .marquee-bar { background: var(--red); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 28s linear infinite;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff;
+    }
+    .marquee-track span { margin: 0 28px; opacity: 0.65; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTIONS */
+    section { padding: 100px 80px; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 4.5vw, 62px);
+      letter-spacing: 1px; line-height: 1; color: var(--white); margin-bottom: 20px;
+    }
+    .section-title span { color: var(--red); }
+    .section-desc { font-size: 17px; color: rgba(244,239,230,0.7); max-width: 580px; line-height: 1.7; }
+
+    /* WHY */
+    .why { background: var(--dark); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; align-items: center; }
+    .why-features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .feature-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-left: 3px solid var(--red); padding: 28px 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-left-color: var(--yellow); }
+    .feature-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+    .feature-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--white); margin-bottom: 8px;
+    }
+    .feature-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+    .why-image-side { position: relative; }
+    .why-image-side img { width: 100%; border: 2px solid var(--border); display: block; }
+    .why-badge-overlay {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--red); padding: 24px 28px; min-width: 160px;
+    }
+    .why-badge-overlay .num { font-family: 'Bebas Neue', sans-serif; font-size: 50px; line-height: 1; color: #fff; }
+    .why-badge-overlay .lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+
+    /* PROGRAMS */
+    .programs { background: var(--black); }
+    .programs-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+    .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .program-card {
+      background: var(--card); border: 1px solid var(--border);
+      overflow: hidden; transition: transform 0.25s; position: relative;
+    }
+    .program-card:hover { transform: translateY(-6px); }
+    .program-card:hover .program-img img { transform: scale(1.05); }
+    .program-card.featured { border-color: var(--red); }
+    .program-card.featured::before {
+      content: 'MOST POPULAR'; position: absolute; top: 16px; right: 0;
+      background: var(--yellow); color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 14px; z-index: 2;
+    }
+    .program-img { height: 200px; overflow: hidden; background: #1a1a1a; }
+    .program-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .program-body { padding: 30px 28px; }
+    .program-tag {
+      display: inline-block; background: rgba(192,57,43,0.15); color: var(--red);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 12px; border: 1px solid rgba(192,57,43,0.3); margin-bottom: 14px;
+    }
+    .program-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--white); margin-bottom: 10px; }
+    .program-body p { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
+    .program-meta { display: flex; gap: 20px; border-top: 1px solid var(--border); padding-top: 18px; }
+    .meta-item { display: flex; flex-direction: column; }
+    .meta-val { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--yellow); }
+    .meta-key { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* PROCESS */
+    .process { background: var(--dark); position: relative; overflow: hidden; }
+    .process::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--yellow), var(--red)); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 60px; position: relative; }
+    .process-steps::before {
+      content: ''; position: absolute; top: 36px; left: 8%; right: 8%;
+      height: 2px; background: linear-gradient(90deg, var(--red), var(--border), var(--red)); z-index: 0;
+    }
+    .step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .step-num {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--card); border: 2px solid var(--red);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--red);
+      transition: background 0.2s, color 0.2s;
+    }
+    .step:hover .step-num { background: var(--red); color: #fff; }
+    .step h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--white); margin-bottom: 10px; }
+    .step p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--black); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+    .testimonial-card { background: var(--card); border: 1px solid var(--border); padding: 32px 28px; position: relative; }
+    .testimonial-card::before { content: '"'; position: absolute; top: 10px; right: 24px; font-family: 'Bebas Neue', sans-serif; font-size: 90px; color: rgba(192,57,43,0.12); line-height: 1; }
+    .stars { color: var(--yellow); font-size: 16px; margin-bottom: 16px; }
+    .testimonial-card p { font-size: 15px; color: rgba(244,239,230,0.8); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--red); display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; flex-shrink: 0;
+    }
+    .author-name { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--white); }
+    .author-role { font-size: 13px; color: var(--gray); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: var(--red); padding: 80px;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before { content: ''; position: absolute; right: -80px; top: -80px; width: 400px; height: 400px; background: rgba(255,255,255,0.07); border-radius: 50%; }
+    .cta-banner::after { content: ''; position: absolute; right: 80px; bottom: -100px; width: 250px; height: 250px; background: rgba(0,0,0,0.12); border-radius: 50%; }
+    .cta-text { position: relative; z-index: 1; }
+    .cta-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 4vw, 58px); letter-spacing: 2px; color: #fff; line-height: 1; margin-bottom: 12px; }
+    .cta-text p { font-size: 18px; color: rgba(255,255,255,0.85); max-width: 500px; }
+    .btn-white {
+      background: #fff; color: var(--red);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 18px 48px; text-decoration: none; border: 2px solid #fff;
+      transition: all 0.25s; white-space: nowrap; position: relative; z-index: 1; display: inline-block;
+    }
+    .btn-white:hover { background: transparent; color: #fff; }
+
+    /* CONTACT */
+    .contact { background: var(--dark); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+    .contact-info h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--white); margin-bottom: 30px; }
+    .contact-item { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 28px; }
+    .contact-icon { width: 46px; height: 46px; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .contact-item-text .label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+    .contact-item-text .val { font-size: 16px; color: var(--white); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--white); font-family: 'Barlow', sans-serif;
+      font-size: 15px; padding: 14px 18px; outline: none;
+      transition: border-color 0.2s; appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select option { background: var(--card); }
+    .submit-btn {
+      background: var(--red); color: #fff; border: none; cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 18px 40px; width: 100%; transition: background 0.25s;
+    }
+    .submit-btn:hover { background: var(--red-light); }
+
+    /* FOOTER */
+    footer { background: #050505; border-top: 2px solid var(--border); padding: 60px 80px 30px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
+    .footer-brand img { height: 80px; width: auto; margin-bottom: 18px; display: block; }
+    .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--white); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: var(--gray); text-decoration: none; font-size: 14px; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+    .footer-col ul li a::before { content: '›'; color: var(--red); font-size: 16px; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--gray); }
+    .footer-bottom a { color: var(--gray); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--white); }
+    .social-links { display: flex; gap: 14px; margin-top: 20px; }
+    .social-links a {
+      width: 36px; height: 36px; background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray); text-decoration: none; font-size: 15px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-links a:hover { background: var(--red); border-color: var(--red); color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      section { padding: 80px 40px; }
+      .hero-content { padding: 60px 40px; }
+      .hero-stats { right: 40px; bottom: 40px; gap: 24px; }
+      .stat-num { font-size: 38px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .cta-banner { padding: 60px 40px; flex-direction: column; text-align: center; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .process-steps::before { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 60px 20px; }
+      .hero-content { padding: 40px 20px; }
+      .hero-stats { display: none; }
+      .hero-buttons { flex-direction: column; }
+      .topbar { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 40px 20px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .hero-badge  { animation: fadeUp 0.6s ease both; }
+    .hero h1     { animation: fadeUp 0.6s 0.15s ease both; }
+    .hero-sub    { animation: fadeUp 0.6s 0.25s ease both; }
+    .hero p      { animation: fadeUp 0.6s 0.35s ease both; }
+    .hero-buttons{ animation: fadeUp 0.6s 0.45s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-items">
+    <span>📞 (214) 970-0011</span>
+    <span>✉ info@handhtruckingacademy.com</span>
+    <span>📍 Dallas, TX</span>
+  </div>
+  <div class="topbar-items">
+    <span>Mon–Fri: 8AM – 5PM</span>
+    <a href="#contact" style="background:rgba(255,255,255,0.2);padding:4px 14px;">Enroll Now</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="Logo.png" alt="H&H Trucking Academy">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#testimonials">Success Stories</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-badge">★ Texas's Premier CDL Training Academy</div>
+    <h1>Launch Your<span>Trucking Career</span>Today</h1>
+    <p class="hero-sub">Professional CDL-A &amp; CDL-B Training</p>
+    <p>H&amp;H Trucking Academy prepares you for a high-demand career on the road with hands-on training, certified instructors, and job placement assistance. From classroom to the cab — we take you all the way.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Enroll Now — Get Started</a>
+      <a href="#programs" class="btn-secondary">View Our Programs</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Graduates</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">95%</div>
+      <div class="stat-label">Job Placement</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years Training</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    CDL-A Training &nbsp;★&nbsp; CDL-B Training &nbsp;★&nbsp; Hazmat Endorsement &nbsp;★&nbsp; Defensive Driving &nbsp;★&nbsp; Job Placement Assistance &nbsp;★&nbsp; Flexible Schedules &nbsp;★&nbsp; Financial Aid Available &nbsp;★&nbsp; State Licensed &nbsp;★&nbsp; Certified Instructors &nbsp;★&nbsp;
+    CDL-A Training &nbsp;★&nbsp; CDL-B Training &nbsp;★&nbsp; Hazmat Endorsement &nbsp;★&nbsp; Defensive Driving &nbsp;★&nbsp; Job Placement Assistance &nbsp;★&nbsp; Flexible Schedules &nbsp;★&nbsp; Financial Aid Available &nbsp;★&nbsp; State Licensed &nbsp;★&nbsp; Certified Instructors &nbsp;★&nbsp;
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why" id="about">
+  <div class="why-grid">
+    <div class="why-image-side">
+      <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&q=80" alt="Truck driver training">
+      <div class="why-badge-overlay">
+        <div class="num">95%</div>
+        <div class="lbl">Pass Rate</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Why H&amp;H Academy</div>
+      <h2 class="section-title">Driving Success<span> Since Day One</span></h2>
+      <p class="section-desc" style="margin-bottom:40px;">We don't just hand you a license — we build professional drivers. Our rigorous, hands-on curriculum combines real-world road time with classroom instruction to make sure you're fully prepared the moment you sit in that cab.</p>
+      <div class="why-features">
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3>Expert Instructors</h3>
+          <p>Industry veterans with 15+ years of experience guiding your training every step of the way.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🚛</span>
+          <h3>Modern Fleet</h3>
+          <p>Train on late-model, fully-maintained commercial vehicles — the same you'll drive on the job.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📋</span>
+          <h3>FMCSA Compliant</h3>
+          <p>Fully certified and compliant with all federal and state training regulations.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💼</span>
+          <h3>Job Placement</h3>
+          <p>Direct connections to top carriers nationwide. 95% of our graduates land jobs within 30 days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-header">
+    <div>
+      <div class="section-label">Training Programs</div>
+      <h2 class="section-title">Choose Your<span> Path</span></h2>
+    </div>
+    <p class="section-desc" style="text-align:right;max-width:320px;">All programs include behind-the-wheel time, classroom instruction, and full CDL exam prep.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card featured">
+      <div class="program-img">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&h=400&fit=crop&crop=center&q=80" alt="CDL-A Training">
+      </div>
+      <div class="program-body">
+        <span class="program-tag">CDL-A</span>
+        <h3>Class A Commercial License</h3>
+        <p>The gold standard of commercial driving. Qualify for tractor-trailers, combination vehicles, and the highest-paying routes in the industry.</p>
+        <div class="program-meta">
+          <div class="meta-item"><span class="meta-val">4 Wks</span><span class="meta-key">Duration</span></div>
+          <div class="meta-item"><span class="meta-val">160 Hrs</span><span class="meta-key">Training</span></div>
+          <div class="meta-item"><span class="meta-val">$4,800</span><span class="meta-key">Tuition</span></div>
+        </div>
+      </div>
+    </div>
+    <a href="cdl-b.html" class="program-card" style="text-decoration:none;color:inherit;">
+      <div class="program-img">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" alt="CDL-B Training">
+      </div>
+      <div class="program-body">
+        <span class="program-tag">CDL-B</span>
+        <h3>Class B Commercial License</h3>
+        <p>Perfect for city drivers, bus operators, and local delivery. Drive straight trucks, dump trucks, and passenger vehicles throughout Texas.</p>
+        <div class="program-meta">
+          <div class="meta-item"><span class="meta-val">3 Wks</span><span class="meta-key">Duration</span></div>
+          <div class="meta-item"><span class="meta-val">120 Hrs</span><span class="meta-key">Training</span></div>
+          <div class="meta-item"><span class="meta-val">$3,500</span><span class="meta-key">Tuition</span></div>
+        </div>
+      </div>
+    </a>
+    <div class="program-card">
+      <div class="program-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Endorsements">
+      </div>
+      <div class="program-body">
+        <span class="program-tag">Endorsements</span>
+        <h3>Specialty Endorsements</h3>
+        <p>Add HazMat, Tanker, Doubles/Triples, or Passenger endorsements to your existing CDL and unlock higher-paying opportunities.</p>
+        <div class="program-meta">
+          <div class="meta-item"><span class="meta-val">1 Wk</span><span class="meta-key">Duration</span></div>
+          <div class="meta-item"><span class="meta-val">40 Hrs</span><span class="meta-key">Training</span></div>
+          <div class="meta-item"><span class="meta-val">$800+</span><span class="meta-key">Tuition</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div style="text-align:center;">
+    <div class="section-label" style="display:flex;justify-content:center;">How It Works</div>
+    <h2 class="section-title">Four Steps to Your<span> CDL</span></h2>
+    <p class="section-desc" style="margin:0 auto;text-align:center;">From enrollment to employment — we guide you through every stage of becoming a licensed commercial driver.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Apply Online</h3>
+      <p>Fill out our quick enrollment form. No prior experience needed — just a valid driver's license and the drive to succeed.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Classroom Training</h3>
+      <p>Master CDL regulations, safety protocols, and DOT compliance with our expert instructors in a structured classroom setting.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Behind the Wheel</h3>
+      <p>Clock real hours driving our modern commercial fleet on closed courses and open roads under certified supervision.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Get Hired</h3>
+      <p>Pass your CDL exam and tap into our network of 50+ hiring partners. We'll help you land your first trucking job.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Student Success Stories</div>
+  <h2 class="section-title">Real Drivers,<span> Real Results</span></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"I came in with zero experience and left with my CDL-A and a job offer in hand. H&amp;H Trucking Academy changed my life. The instructors are patient, knowledgeable, and genuinely want to see you succeed."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">MJ</div>
+        <div>
+          <div class="author-name">Marcus J.</div>
+          <div class="author-role">CDL-A Graduate · Now Driving OTR</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Best investment I ever made. In 4 weeks I went from never touching a semi to passing my CDL test on the first try. The hands-on training is unmatched. Already earning $75K my first year."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">TR</div>
+        <div>
+          <div class="author-name">Tamara R.</div>
+          <div class="author-role">CDL-A Graduate · Regional Carrier</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"After 10 years in warehouse work I decided to make a change. H&amp;H made the transition smooth and professional. Their job placement team connected me with three carriers before I even finished the program."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">DW</div>
+        <div>
+          <div class="author-name">Darnell W.</div>
+          <div class="author-role">CDL-B Graduate · City Transit Driver</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-text">
+    <h2>Ready to Hit the Road?</h2>
+    <p>Classes start monthly. Seats fill fast — secure your spot today and start building your future behind the wheel.</p>
+  </div>
+  <a href="#contact" class="btn-white">Enroll Today — Classes Filling Now</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title">Start Your Application<span> Today</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>We're Here to Help</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-item-text">
+          <div class="label">Phone</div>
+          <div class="val">(214) 970-0011</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div class="contact-item-text">
+          <div class="label">Email</div>
+          <div class="val">info@handhtruckingacademy.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-item-text">
+          <div class="label">Location</div>
+          <div class="val">8035 E R L Thornton Frwy Ste 266, Dallas, TX 75228</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-item-text">
+          <div class="label">Office Hours</div>
+          <div class="val">Mon–Fri: 8AM – 5PM · Sat: 9AM – 1PM</div>
+        </div>
+      </div>
+      <div style="margin-top:20px;padding:24px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Financial Aid Available</p>
+        <p style="font-size:14px;color:var(--gray);line-height:1.6;">We work with several financial assistance programs to make CDL training affordable. Ask us about payment plans and employer-sponsored training options.</p>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="john@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Program Interest</label>
+          <select>
+            <option value="">Select a program...</option>
+            <option>CDL-A — Class A Commercial License</option>
+            <option>CDL-B — Class B Commercial License</option>
+            <option>Specialty Endorsements</option>
+            <option>Not sure — I want guidance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea placeholder="Tell us a bit about your experience and goals..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Application →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#"><img src="Logo.png" alt="H&H Trucking Academy"></a>
+      <p>H&amp;H Trucking Academy is Dallas's premier CDL training school, dedicated to producing safe, skilled, and job-ready commercial drivers.</p>
+      <div class="social-links">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="#" title="YouTube">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="#programs">CDL-A Training</a></li>
+        <li><a href="#programs">CDL-B Training</a></li>
+        <li><a href="#programs">HazMat Endorsement</a></li>
+        <li><a href="#programs">Tanker Endorsement</a></li>
+        <li><a href="#programs">Doubles &amp; Triples</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Academy</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#testimonials">Success Stories</a></li>
+        <li><a href="#contact">Financial Aid</a></li>
+        <li><a href="#contact">Job Placement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:2149700011">(214) 970-0011</a></li>
+        <li><a href="mailto:info@handhtruckingacademy.com">Email Us</a></li>
+        <li><a href="#contact">8035 E R L Thornton Frwy Ste 266, Dallas, TX 75228</a></li>
+        <li><a href="#contact">Mon–Fri: 8AM–5PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 H&amp;H Trucking Academy. All rights reserved. · <a href="https://www.handhtruckingacademy.com" target="_blank">handhtruckingacademy.com</a></span>
+    <div style="display:flex;gap:24px;">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = '✓ Application Received — We\'ll Be In Touch!';
